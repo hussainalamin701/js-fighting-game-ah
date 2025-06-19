@@ -1,7 +1,7 @@
 kaboom({
-    width: 2309,
-    height: 1313,
-    scale: 1,
+    width: 1280,
+    height: 720,
+    scale: 0.7,
     debug: false
 })
 
@@ -76,13 +76,43 @@ loadSprite("death-player2", "assets/death-player2.png", {
 })
 
 scene("main", () => {
-    add([
+    const background = add([
         sprite("background"),
-        pos(0, 0),
-        scale(2309 / 512, 1313 / 288),
-        anchor("topleft"),
-        layer("bg"),
+        scale(4)
     ])
+
+    background.add([
+        sprite("trees"),
+    ])
+
+    const groundTiles = addLevel([
+        "","","","","","","","","",
+        "------#######-----------",
+        "dddddddddddddddddddddddd",
+        "dddddddddddddddddddddddd"
+        ], {
+        tileWidth: 16,
+        tileHeight: 16,
+        tiles: {
+            "#": () => [
+                sprite("ground-golden"),
+                area(),
+                body({isStatic: true})
+            ],
+            "-": () => [
+                sprite("ground-silver"),
+                area(),
+                body({isStatic: true}),
+            ],
+            "d": () => [
+                sprite("deep-ground"),
+                area(),
+                body({isStatic: true})
+            ]
+        }
+    })
+    
+    groundTiles.use(scale(4))
 
 })
 
