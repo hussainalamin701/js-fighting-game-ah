@@ -1,7 +1,7 @@
 kaboom({
-    width: 1280,
-    height: 720,
-    scale: 0.7,
+    width: 2309,
+    height: 1313,
+    scale: 1,
     debug: false
 })
 
@@ -74,3 +74,16 @@ loadSprite("run-player2", "assets/run-player2.png", {
 loadSprite("death-player2", "assets/death-player2.png", {
     sliceX: 7, sliceY: 1, anims: { "death": { from: 0, to: 6, speed: 10}}
 })
+
+scene("main", () => {
+    add([
+        sprite("background"),
+        pos(0, 0),
+        scale(2309 / 512, 1313 / 288),
+        anchor("topleft"),
+        layer("bg"),
+    ])
+
+})
+
+go("main")
